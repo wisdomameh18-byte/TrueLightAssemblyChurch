@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Testimony - RCCG True Light</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(to right, white, white);
+            color: blue;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .logo-section {
+            margin-bottom: 20px;
+        }
+
+        .logo-section img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .church-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Form Container */
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-title {
+            color: #1a237e;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            z-index: 1;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #1a237e;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+            padding: 15px;
+            padding-left: 15px;
+            font-family: inherit;
+        }
+
+        /* File Upload */
+        .file-upload-group {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 2px dashed #e0e0e0;
+            text-align: center;
+        }
+
+        .file-upload-group:hover {
+            border-color: #1a237e;
+            background: #f1f3ff;
+        }
+
+        .file-label {
+            display: block;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .file-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+
+        .file-note {
+            color: #888;
+            font-size: 12px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Testimony Type */
+        .testimony-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .type-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .type-btn:hover {
+            border-color: #1a237e;
+            background: #f1f3ff;
+        }
+
+        .type-btn.active {
+            background: #1a237e;
+            color: white;
+            border-color: #1a237e;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(to right, #128C7E, #075E54);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-btn a {
+            color: #666;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn a:hover {
+            color: #1a237e;
+        }
+
+        /* Message Display */
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #c62828;
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .info-message {
+            background: #e3f2fd;
+            color: #1565c0;
+            border-left: 4px solid #1565c0;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+            }
+            
+            .form-container {
+                padding: 30px;
+            }
+            
+            .header {
+                padding: 25px;
+            }
+            
+            .testimony-types {
+                flex-direction: column;
+            }
+            
+            .type-btn {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .logo-section img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .church-name {
+                font-size: 18px;
+            }
+            
+            .form-title {
+                font-size: 20px;
+            }
+            
+            .submit-btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="RCCG True Light Logo">
+                <div class="church-name">RCCG True Light</div>
+                <div class="page-subtitle">Share Your Testimony</div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <h2 class="form-title">Share Your Testimony</h2>
+            <p class="form-subtitle">Your testimony can encourage others in their faith journey. Share what God has done!</p>
+            
+            <div id="messageDisplay" class="message"></div>
+            
+            <form id="whatsappForm">
+                <!-- Testimony Type Selection -->
+                <div class="form-group">
+                    <label>Testimony Type</label>
+                    <div class="testimony-types">
+                        <button type="button" class="type-btn" data-type="healing">Healing & Miracle</button>
+                        <button type="button" class="type-btn" data-type="provision">Provision & Breakthrough</button>
+                        <button type="button" class="type-btn" data-type="deliverance">Deliverance & Freedom</button>
+                        <button type="button" class="type-btn" data-type="other">Other Testimony</button>
+                    </div>
+                </div>
+
+                <!-- Form Fields -->
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" 
+                               id="name" 
+                               class="form-control" 
+                               placeholder="Enter your full name" 
+                               required
+                               minlength="2">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="number">Phone Number *</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" 
+                               id="number" 
+                               class="form-control" 
+                               placeholder="e.g., 08036069793" 
+                               required
+                               pattern="[0-9]{11}"
+                               maxlength="11">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="testimony">Your Testimony *</label>
+                    <textarea id="testimony" 
+                              class="form-control" 
+                              placeholder="Share your testimony in detail. What happened? When? How has it changed your life?" 
+                              required
+                              minlength="20"></textarea>
+                </div>
+
+                <!-- Optional Media Upload -->
+                <div class="file-upload-group">
+                    <label class="file-label">
+                        <i class="fas fa-camera"></i> Optional: Share Photos or Audio
+                    </label>
+                    <input type="file" 
+                           id="media" 
+                           class="file-input" 
+                           accept="image/*,audio/*"
+                           multiple>
+                    <small class="file-note">
+                        You can upload photos or audio recordings of your testimony (optional)
+                    </small>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    Share Testimony via WhatsApp
+                </button>
+
+                <div class="back-btn">
+                    <a href="index.html">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Homepage
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+     <!-- In the script section of testimony.html -->
+<script>
+    // ... (previous code remains the same) ...
+
+    // Form submission
+    document.getElementById("whatsappForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        // Get form values
+        const name = document.getElementById("name").value.trim();
+        const number = document.getElementById("number").value.trim();
+        const testimony = document.getElementById("testimony").value.trim();
+
+        // Validation
+        if (name.length < 2) {
+            showMessage("Please enter your full name (minimum 2 characters)", "error");
+            document.getElementById("name").focus();
+            return;
+        }
+
+        if (!/^[0-9]{11}$/.test(number)) {
+            showMessage("Please enter a valid 11-digit phone number", "error");
+            document.getElementById("number").focus();
+            return;
+        }
+
+        if (testimony.length < 20) {
+            showMessage("Please share your testimony in more detail (minimum 20 characters)", "error");
+            document.getElementById("testimony").focus();
+            return;
+        }
+
+        // WhatsApp number - formatted for Nigeria (234 country code)
+        // Original: 08036069793 -> International: 2348036069793
+        const phoneNumber = "2348036069793";
+
+        // Get testimony type text
+        const typeText = {
+            'healing': 'Healing & Miracle',
+            'provision': 'Provision & Breakthrough',
+            'deliverance': 'Deliverance & Freedom',
+            'other': 'Other Testimony'
+        }[selectedType] || 'Testimony';
+
+        // Format message
+        const text = `*NEW TESTIMONY - RCCG TRUE LIGHT*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(number)}%0A*Type:* ${encodeURIComponent(typeText)}%0A%0A*Testimony:*%0A${encodeURIComponent(testimony)}%0A%0A_"They triumphed over him by the blood of the Lamb and by the word of their testimony." - Revelation 12:11%0A%0A_(Sent from RCCG True Light website testimony form)_`;
+
+        // WhatsApp URL - Fixed format
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${text}`;
+
+        // Show confirmation
+        if (confirm(`You're about to share your ${typeText.toLowerCase()} on WhatsApp. Continue?`)) {
+            // Open WhatsApp in new tab
+            window.open(whatsappURL, "_blank", "noopener,noreferrer");
+            
+            // Show success message
+            showMessage(`✅ Opening WhatsApp... Please send your testimony to bless others!`, "success");
+            
+            // Reset form after delay
+            setTimeout(() => {
+                document.getElementById("whatsappForm").reset();
+                document.querySelectorAll('.type-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                document.querySelector('.type-btn').classList.add('active');
+                selectedType = 'healing';
+            }, 3000);
+        }
+    });
+
+    // ... (rest of the script remains the same) ...
+</script>
+    <script>
+        // Phone number validation
+        const phoneInput = document.getElementById('number');
+        phoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Testimony type selection
+        let selectedType = 'healing';
+        document.querySelectorAll('.type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.type-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                selectedType = this.dataset.type;
+            });
+        });
+
+        // Activate first option by default
+        document.querySelector('.type-btn').classList.add('active');
+
+        // Form submission
+        document.getElementById("whatsappForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById("name").value.trim();
+            const number = document.getElementById("number").value.trim();
+            const testimony = document.getElementById("testimony").value.trim();
+
+            // Validation
+            if (name.length < 2) {
+                showMessage("Please enter your full name (minimum 2 characters)", "error");
+                document.getElementById("name").focus();
+                return;
+            }
+
+            if (!/^[0-9]{11}$/.test(number)) {
+                showMessage("Please enter a valid 11-digit phone number", "error");
+                document.getElementById("number").focus();
+                return;
+            }
+
+            if (testimony.length < 20) {
+                showMessage("Please share your testimony in more detail (minimum 20 characters)", "error");
+                document.getElementById("testimony").focus();
+                return;
+            }
+
+            // WhatsApp number (remove + and spaces)
+            const phoneNumber = "2348036069793";
+
+            // Get testimony type text
+            const typeText = {
+                'healing': 'Healing & Miracle',
+                'provision': 'Provision & Breakthrough',
+                'deliverance': 'Deliverance & Freedom',
+                'other': 'Other Testimony'
+            }[selectedType] || 'Testimony';
+
+            // Format message
+            const text = `*NEW TESTIMONY - RCCG TRUE LIGHT*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(number)}%0A*Type:* ${encodeURIComponent(typeText)}%0A%0A*Testimony:*%0A${encodeURIComponent(testimony)}%0A%0A_"They triumphed over him by the blood of the Lamb and by the word of their testimony." - Revelation 12:11%0A%0A_(Sent from RCCG True Light website testimony form)_`;
+
+            // WhatsApp URL
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${text}`;
+
+            // Show confirmation
+            if (confirm(`You're about to share your ${typeText.toLowerCase()} on WhatsApp. Continue?`)) {
+                // Open WhatsApp
+                window.open(whatsappURL, "_blank");
+                
+                // Show success message
+                showMessage(`✅ Opening WhatsApp... Please send your testimony to bless others!`, "success");
+                
+                // Reset form after delay
+                setTimeout(() => {
+                    document.getElementById("whatsappForm").reset();
+                    document.querySelectorAll('.type-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    document.querySelector('.type-btn').classList.add('active');
+                    selectedType = 'healing';
+                }, 3000);
+            }
+        });
+
+        // Show message function
+        function showMessage(message, type = "info") {
+            const messageDiv = document.getElementById("messageDisplay");
+            messageDiv.innerHTML = message;
+            messageDiv.className = `message ${type}-message`;
+            messageDiv.style.display = 'block';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show welcome message
+            setTimeout(() => {
+                showMessage("🎉 Your testimony is powerful! Share what God has done to encourage others.", "info");
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>

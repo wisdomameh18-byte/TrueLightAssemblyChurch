@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Centre - RCCG True Light</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #1a237e;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .church-name {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #1a237e;
+        }
+
+        .church-subtitle {
+            font-size: 16px;
+            margin-top: 5px;
+            color: #666;
+        }
+
+        /* Navigation */
+        .topnav {
+            background-color: #1a237e;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 18px 22px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topnav a:hover {
+            background-color: #283593;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .topnav a i {
+            font-size: 20px;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+            color: #1a237e;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h1:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #1a237e, #283593);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Admin Section */
+        .admin-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .admin-section.hidden {
+            display: none;
+        }
+
+        .admin-section h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: #1a237e;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+        }
+
+        .admin-btn {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .admin-btn:hover:not(:disabled) {
+            background: linear-gradient(to right, #283593, #3949ab);
+            transform: scale(1.02);
+        }
+
+        .admin-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .logout-btn {
+            background: linear-gradient(to right, #d32f2f, #f44336);
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover:not(:disabled) {
+            background: linear-gradient(to right, #b71c1c, #d32f2f);
+        }
+
+        /* Admin Instructions */
+        .admin-instructions {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .admin-instructions h3 {
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .admin-instructions ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .admin-instructions li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .admin-instructions ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
+        .admin-instructions a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+
+        .admin-instructions a:hover {
+            text-decoration: underline;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Download Sections */
+        .download-section {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #1a237e;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #1a237e;
+        }
+
+        /* Media Grid */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .media-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .media-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+            display: block;
+        }
+
+        .media-content {
+            padding: 20px;
+        }
+
+        .media-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .media-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .download-btn {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(to right, #283593, #3949ab);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(26, 35, 126, 0.2);
+        }
+
+        /* Video Player */
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .video-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 15px 0;
+            margin: 40px 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .marquee-text {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0 10px;
+        }
+
+        /* File Info */
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+
+        .file-info span {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* Messages */
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .info-message {
+            background: #e3f2fd;
+            color: #1565c0;
+            border-left: 4px solid #1565c0;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #c62828;
+        }
+
+        /* Edit Button */
+        .edit-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background: linear-gradient(to right, #283593, #3949ab);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .topnav a {
+                float: none;
+                width: 100%;
+                text-align: left;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title h1 {
+                font-size: 28px;
+            }
+            
+            .page-title p {
+                font-size: 16px;
+            }
+            
+            .admin-section {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .church-name {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .edit-btn {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+            
+            .video-item video {
+                height: 200px;
+            }
+            
+            .media-thumbnail {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="RCCG True Light Logo">
+            <div>
+                <div class="church-name">True Light Zonal Headquarters</div>
+                <div class="church-subtitle">RCCG True Light Assembly</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="topnav">
+        <a href="index.html">
+            <i class="fas fa-home"></i>
+            Go Back to Home
+        </a>
+        <a href="aboutus.html">
+            <i class="fas fa-info-circle"></i>
+            About Us
+        </a>
+        <a href="contact_us.html">
+            <i class="fas fa-envelope"></i>
+            Contact
+        </a>
+        <a href="#" onclick="toggleAdminPanel(event)">
+            <i class="fas fa-user-shield"></i>
+            Admin Panel
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>Download Centre</h1>
+        <p>Access sermons, worship sessions, and church resources</p>
+    </div>
+
+    <!-- Admin Instructions Panel -->
+    <div id="adminPanel" class="admin-section hidden">
+        <h2><i class="fas fa-user-shield"></i> Admin Instructions</h2>
+        
+        <div class="admin-instructions">
+            <h3>How to Add Files Using Google Drive:</h3>
+            
+            <ol>
+                <li><strong>Upload to Google Drive:</strong>
+                    <ul>
+                        <li>Go to <a href="https://drive.google.com" target="_blank">drive.google.com</a></li>
+                        <li>Upload your files (videos, images, audio)</li>
+                        <li>Organize them in folders if needed</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Get Shareable Links:</strong>
+                    <ul>
+                        <li>Right-click the file in Google Drive</li>
+                        <li>Click "Share" → "Anyone with the link"</li>
+                        <li>Copy the link</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Convert to Download Links:</strong>
+                    <div class="code-block">
+                        Original Google Drive link:<br>
+                        https://drive.google.com/file/d/1ABC123xyz/view?usp=sharing<br><br>
+                        
+                        Convert to:<br>
+                        https://drive.google.com/uc?export=download&id=1ABC123xyz
+                    </div>
+                </li>
+                
+                <li><strong>Edit This HTML File:</strong>
+                    <ul>
+                        <li>Open this file in a text editor (VS Code, Notepad++, Sublime, etc.)</li>
+                        <li>Find the section you want to add to (Videos, Images, or Audio)</li>
+                        <li>Copy one of the existing file blocks and edit it</li>
+                        <li>Replace the link and file information</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>Quick Template:</h3>
+            <div class="code-block">
+                &lt;!-- For Videos --&gt;<br>
+                &lt;div class="video-item"&gt;<br>
+                &nbsp;&nbsp;&lt;video controls poster="images/video-thumb.jpg"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;source src="<strong>YOUR_GOOGLE_DRIVE_LINK_HERE</strong>" type="video/mp4"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Your browser does not support the video tag.<br>
+                &nbsp;&nbsp;&lt;/video&gt;<br>
+                &nbsp;&nbsp;&lt;div class="video-info"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h3 class="media-title"&gt;<strong>Your Title Here</strong>&lt;/h3&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="media-description"&gt;<strong>Your Description Here</strong>&lt;/p&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="file-info"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;i class="fas fa-clock"&gt;&lt;/i&gt; Date Here&lt;/span&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;•&lt;/span&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;i class="fas fa-hdd"&gt;&lt;/i&gt; File Size&lt;/span&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="<strong>YOUR_GOOGLE_DRIVE_LINK_HERE</strong>" download class="download-btn"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;i class="fas fa-download"&gt;&lt;/i&gt; Download Video<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br>
+                &nbsp;&nbsp;&lt;/div&gt;<br>
+                &lt;/div&gt;
+            </div>
+            
+            <div id="adminMessage" class="message" style="display: none;"></div>
+            
+            <button class="admin-btn logout-btn" onclick="toggleAdminPanel(event)">
+                <i class="fas fa-times"></i>
+                Close Admin Panel
+            </button>
+        </div>
+    </div>
+
+    <!-- Marquee Message -->
+    <div class="marquee-container">
+        <marquee class="marquee-text" direction="left" scrollamount="4">
+            Welcome to our Download page! Get access to powerful messages, worship sessions, and inspirational resources.
+        </marquee>
+    </div>
+
+    <!-- Content Sections -->
+    <div id="contentContainer">
+        <!-- Videos Section -->
+        <div class="download-section">
+            <h2 class="section-title">
+                <i class="fas fa-video"></i>
+                Sermon Videos
+            </h2>
+            
+            <div class="video-container">
+                <!-- Example Video 1 - EDIT THIS -->
+                <div class="video-item">
+                    <video controls poster="images/video-thumb.jpg">
+                        <source src="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_1" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3 class="media-title">Sunday Service Sermon</h3>
+                        <p class="media-description">Powerful message on faith and perseverance from our Sunday service.</p>
+                        <div class="file-info">
+                            <span><i class="fas fa-clock"></i> October 15, 2024</span>
+                            <span>•</span>
+                            <span><i class="fas fa-hdd"></i> 25 MB</span>
+                        </div>
+                        <a href="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_1" download="Sunday_Sermon.mp4" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Download Video
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Example Video 2 - EDIT THIS -->
+                <div class="video-item">
+                    <video controls poster="images/video-thumb2.jpg">
+                        <source src="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_2" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3 class="media-title">Bible Study Session</h3>
+                        <p class="media-description">Deep dive into the Book of Romans - Chapter 8 study.</p>
+                        <div class="file-info">
+                            <span><i class="fas fa-clock"></i> October 8, 2024</span>
+                            <span>•</span>
+                            <span><i class="fas fa-hdd"></i> 18 MB</span>
+                        </div>
+                        <a href="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_2" download="Bible_Study.mp4" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Download Video
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- ADD MORE VIDEOS HERE -->
+                <!-- Copy the above video-item block and edit the links -->
+            </div>
+        </div>
+
+        <!-- Images Section -->
+        <div class="download-section">
+            <h2 class="section-title">
+                <i class="fas fa-images"></i>
+                Church Images
+            </h2>
+            
+            <div class="media-grid">
+                <!-- Example Image 1 - EDIT THIS -->
+                <div class="media-item">
+                    <img src="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_1" alt="Daddy and Mummy GO" class="media-thumbnail">
+                    <div class="media-content">
+                        <h3 class="media-title">Daddy and Mummy GO</h3>
+                        <p class="media-description">Pastor E.A. Adeboye and wife at a church program</p>
+                        <div class="file-info">
+                            <span><i class="fas fa-clock"></i> October 10, 2024</span>
+                            <span>•</span>
+                            <span><i class="fas fa-hdd"></i> 2 MB</span>
+                        </div>
+                        <a href="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_1" download="Pastor_Adeboye.jpg" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Download Image
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Example Image 2 - EDIT THIS -->
+                <div class="media-item">
+                    <img src="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_2" alt="General Overseer" class="media-thumbnail">
+                    <div class="media-content">
+                        <h3 class="media-title">General Overseer</h3>
+                        <p class="media-description">Official portrait of Pastor E.A. Adeboye</p>
+                        <div class="file-info">
+                            <span><i class="fas fa-clock"></i> October 5, 2024</span>
+                            <span>•</span>
+                            <span><i class="fas fa-hdd"></i> 1.5 MB</span>
+                        </div>
+                        <a href="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_2" download="GO_Portrait.jpg" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Download Image
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- ADD MORE IMAGES HERE -->
+                <!-- Copy the above media-item block and edit the links -->
+            </div>
+        </div>
+
+        <!-- Audio Section -->
+        <div class="download-section">
+            <h2 class="section-title">
+                <i class="fas fa-music"></i>
+                Worship Audio
+            </h2>
+            
+            <div class="media-grid">
+                <!-- Example Audio 1 - EDIT THIS -->
+                <div class="media-item">
+                    <div class="media-content">
+                        <h3 class="media-title">Powerful Ministration</h3>
+                        <p class="media-description">Anointed worship session from the choir - "Great are You Lord"</p>
+                        <audio controls style="width: 100%; margin: 15px 0;">
+                            <source src="https://drive.google.com/uc?export=download&id=YOUR_AUDIO_ID_1" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="file-info">
+                            <span><i class="fas fa-clock"></i> October 3, 2024</span>
+                            <span>•</span>
+                            <span><i class="fas fa-hdd"></i> 8 MB</span>
+                        </div>
+                        <a href="https://drive.google.com/uc?export=download&id=YOUR_AUDIO_ID_1" download="Worship_Session.mp3" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Download Audio
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- ADD MORE AUDIO HERE -->
+                <!-- Copy the above media-item block and edit the links -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Edit Button -->
+    <button class="edit-btn" onclick="toggleAdminPanel(event)">
+        <i class="fas fa-edit"></i>
+        Edit Content
+    </button>
+
+    <script>
+        // Simple admin panel toggle
+        let isAdminPanelVisible = false;
+
+        function toggleAdminPanel(event) {
+            event.preventDefault();
+            const adminPanel = document.getElementById('adminPanel');
+            isAdminPanelVisible = !isAdminPanelVisible;
+            
+            if (isAdminPanelVisible) {
+                adminPanel.classList.remove('hidden');
+                window.scrollTo({ top: adminPanel.offsetTop, behavior: 'smooth' });
+                showMessage('Follow the instructions to add/edit files. You need to edit the HTML file manually.', 'info', 'adminMessage');
+            } else {
+                adminPanel.classList.add('hidden');
+            }
+        }
+
+        // Show message
+        function showMessage(message, type = 'info', elementId = null) {
+            const element = elementId ? document.getElementById(elementId) : null;
+            if (element) {
+                element.innerHTML = message;
+                element.className = `message ${type}-message`;
+                element.style.display = 'block';
+                
+                // Auto-hide after 8 seconds
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 8000);
+            } else {
+                // Create a temporary message
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}-message`;
+                messageDiv.innerHTML = message;
+                messageDiv.style.position = 'fixed';
+                messageDiv.style.top = '20px';
+                messageDiv.style.right = '20px';
+                messageDiv.style.zIndex = '1001';
+                messageDiv.style.maxWidth = '300px';
+                messageDiv.style.padding = '15px';
+                messageDiv.style.borderRadius = '8px';
+                messageDiv.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                
+                document.body.appendChild(messageDiv);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    messageDiv.style.opacity = '0';
+                    messageDiv.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        messageDiv.remove();
+                    }, 300);
+                }, 5000);
+            }
+        }
+
+        // Add hover effects to media items
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.media-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Show welcome message for first-time visitors
+            if (!localStorage.getItem('visitedBefore')) {
+                setTimeout(() => {
+                    showMessage('👋 Welcome to RCCG Download Centre! Click the "Edit Content" button to learn how to add files.', 'info');
+                }, 2000);
+                localStorage.setItem('visitedBefore', 'true');
+            }
+        });
+
+        // Helper function to generate Google Drive download link
+        function generateDriveLink(shareLink) {
+            // Extract file ID from Google Drive share link
+            const match = shareLink.match(/\/d\/([^\/]+)/);
+            if (match && match[1]) {
+                const fileId = match[1];
+                return `https://drive.google.com/uc?export=download&id=${fileId}`;
+            }
+            return shareLink; // Return original if no match
+        }
+
+        // Optional: Simple link converter (for advanced users)
+        function convertDriveLink() {
+            const shareLink = prompt('Paste your Google Drive share link:');
+            if (shareLink) {
+                const downloadLink = generateDriveLink(shareLink);
+                prompt('Your download link (copy this):', downloadLink);
+            }
+        }
+
+        // Handle video loading errors
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('error', function() {
+                console.log('Video failed to load:', this.src);
+                // You could add error handling here
+            });
+        });
+    </script>
+
+</body>
+</html>

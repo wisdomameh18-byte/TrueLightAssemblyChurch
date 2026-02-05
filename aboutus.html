@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - RCCG True Light</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            color: #333;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #1a237e;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .church-name {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #1a237e;
+        }
+
+        .church-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Navigation */
+        .topnav {
+            background-color: #1a237e;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 18px 22px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topnav a:hover {
+            background-color: #283593;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .topnav a i {
+            font-size: 20px;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            color: #1a237e;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h1:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #1a237e, #283593);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 15px 0;
+            margin: 0 20px 40px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .marquee-text {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0 10px;
+        }
+
+        /* Activities Table */
+        .activities-section {
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #1a237e;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #1a237e;
+        }
+
+        .activities-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .activities-table thead {
+            background: linear-gradient(to right, #1a237e, #283593);
+        }
+
+        .activities-table th {
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .activities-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .activities-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .activities-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .day-cell {
+            font-weight: 600;
+            color: #1a237e;
+        }
+
+        .time-cell {
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Leadership Cards */
+        .leadership-section {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .leader-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .leader-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .leader-info {
+            padding: 25px;
+        }
+
+        .leader-name {
+            font-size: 22px;
+            color: #1a237e;
+            margin-bottom: 8px;
+        }
+
+        .leader-title {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .leader-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .leader-contact {
+            color: #1a237e;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .contact-btn {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(to right, #283593, #3949ab);
+            transform: scale(1.05);
+        }
+
+        /* Vision & Mission */
+        .vision-mission-section {
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .vision-box, .mission-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #1a237e;
+        }
+
+        .vision-box h3, .mission-box h3 {
+            color: #1a237e;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vision-box h3 i, .mission-box h3 i {
+            color: #1a237e;
+        }
+
+        .vision-box ul, .mission-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .vision-box li, .mission-box li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+
+        .vision-box li:last-child, .mission-box li:last-child {
+            border-bottom: none;
+        }
+
+        .vision-box li:before, .mission-box li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #1a237e;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Service Schedule */
+        .service-schedule {
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .schedule-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .schedule-box h3 {
+            color: #1a237e;
+            font-size: 24px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .schedule-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #1a237e;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .schedule-time {
+            color: #1a237e;
+            font-weight: 600;
+            font-size: 15px;
+            min-width: 150px;
+        }
+
+        .schedule-activity {
+            color: #333;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .leadership-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .topnav a {
+                float: none;
+                width: 100%;
+                text-align: left;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .activities-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .page-title h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .schedule-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .schedule-time {
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .church-name {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .vision-box, .mission-box, .schedule-box {
+                padding: 20px;
+            }
+            
+            .leader-img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="RCCG True Light Logo">
+            <div>
+                <div class="church-name">True Light Zonal Headquarters</div>
+                <div class="church-subtitle">RCCG True Light Assembly</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="topnav">
+        <a href="index.html">
+            <i class="fas fa-home"></i>
+            Go Back to Home
+        </a>
+        <a href="download_centre.html">
+            <i class="fas fa-download"></i>
+            Download Centre
+        </a>
+        <a href="contact_us.html">
+            <i class="fas fa-envelope"></i>
+            Contact Us
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>About Our Church</h1>
+        <p>Get to know us, our leadership, and our activities</p>
+    </div>
+
+    <!-- Marquee Message -->
+    <div class="marquee-container">
+        <marquee class="marquee-text" direction="left" scrollamount="4">
+            Welcome! Find information about our weekly activities, leadership, vision, and mission.
+        </marquee>
+    </div>
+
+    <!-- Activities Schedule -->
+    <div class="activities-section">
+        <h2 class="section-title">
+            <i class="fas fa-calendar-alt"></i>
+            Weekly Activities
+        </h2>
+        
+        <table class="activities-table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Activity</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="day-cell">Tuesday</td>
+                    <td>Digging Deep Bible Study</td>
+                    <td class="time-cell">6:00 PM - 7:30 PM</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Thursday</td>
+                    <td>Faith Clinic Service</td>
+                    <td class="time-cell">6:00 PM - 7:00 PM</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Friday</td>
+                    <td>Prayer Band</td>
+                    <td class="time-cell">5:00 PM - 6:00 PM</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Saturday</td>
+                    <td>Choir Rehearsal</td>
+                    <td class="time-cell">6:00 PM - 7:00 PM</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Sunday</td>
+                    <td>Family Worship Service</td>
+                    <td class="time-cell">Multiple Services</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Leadership -->
+    <div class="leadership-section">
+        <h2 class="section-title">
+            <i class="fas fa-users"></i>
+            Our Leadership
+        </h2>
+        
+        <div class="leadership-grid">
+            <div class="leader-card">
+                <img src="images/daddy.jpeg" alt="Pastor Enoch Adeboye" class="leader-img">
+                <div class="leader-info">
+                    <h3 class="leader-name">Pastor Enoch Adejare Adeboye</h3>
+                    <p class="leader-title">General Overseer</p>
+                    <p class="leader-description">The General Overseer of the Redeemed Christian Church of God worldwide. A man of God with a divine mandate for revival.</p>
+                    <p class="leader-contact">EnochAdejare@gmail.com</p>
+                    <button class="contact-btn">Contact</button>
+                </div>
+            </div>
+            
+            <div class="leader-card">
+                <img src="images/daddygold.jpeg" alt="Pastor Ameh Jeremiah" class="leader-img">
+                <div class="leader-info">
+                    <h3 class="leader-name">Pastor Ameh Jeremiah</h3>
+                    <p class="leader-title">Pastor in Charge - Zone</p>
+                    <p class="leader-description">The Pastor in charge of True Light Zonal Headquarters, providing spiritual leadership and guidance.</p>
+                    <p class="leader-contact">pastorameh100@gmail.com</p>
+                    <button class="contact-btn">Contact</button>
+                </div>
+            </div>
+            
+            <div class="leader-card">
+                <img src="images/daddygold.jpeg" alt="Associate Pastor" class="leader-img">
+                <div class="leader-info">
+                    <h3 class="leader-name">Associate Pastor</h3>
+                    <p class="leader-title">Associate Pastor</p>
+                    <p class="leader-description">Working alongside the Zonal Pastor to minister to the congregation and coordinate church activities.</p>
+                    <p class="leader-contact">associate@rccg-truelight.org</p>
+                    <button class="contact-btn">Contact</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vision & Mission -->
+    <div class="vision-mission-section">
+        <div class="vision-box">
+            <h3><i class="fas fa-eye"></i> Our Vision</h3>
+            <ul>
+                <li>To make Heaven</li>
+                <li>To take as many people as possible with us</li>
+                <li>To have a member of RCCG in every family of all nations</li>
+                <li>To accomplish No.1 above, holiness will be our lifestyle</li>
+            </ul>
+        </div>
+        
+        <div class="mission-box">
+            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+            <ul>
+                <li>To plant churches within five minutes walking distance in every city and town of developing countries</li>
+                <li>To plant churches within five minutes driving distance in every city and town of developed countries</li>
+                <li>To pursue these objectives until every nation in the world is reached for Jesus Christ our Lord</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sunday Service Schedule -->
+    <div class="service-schedule">
+        <h2 class="section-title">
+            <i class="fas fa-church"></i>
+            Sunday Service Schedule
+        </h2>
+        
+        <div class="schedule-box">
+            <h3><i class="fas fa-clock"></i> Worship Timetable</h3>
+            
+            <div class="schedule-item">
+                <span class="schedule-time">6:30 AM - 7:00 AM</span>
+                <span class="schedule-activity">Workers Anointing Service</span>
+            </div>
+            
+            <div class="schedule-item">
+                <span class="schedule-time">7:00 AM - 7:30 AM</span>
+                <span class="schedule-activity">Open Heaven Devotional</span>
+            </div>
+            
+            <div class="schedule-item">
+                <span class="schedule-time">7:30 AM - 8:30 AM</span>
+                <span class="schedule-activity">First Worship Service</span>
+            </div>
+            
+            <div class="schedule-item">
+                <span class="schedule-time">8:30 AM - 9:15 AM</span>
+                <span class="schedule-activity">Sunday School</span>
+            </div>
+            
+            <div class="schedule-item">
+                <span class="schedule-time">9:15 AM - 11:00 AM</span>
+                <span class="schedule-activity">Second Worship Service</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contact button functionality
+        document.querySelectorAll('.contact-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.leader-card');
+                const name = card.querySelector('.leader-name').textContent;
+                const email = card.querySelector('.leader-contact').textContent;
+                
+                alert(`Contact ${name}\nEmail: ${email}\n\nYou will be redirected to send an email.`);
+                
+                // In a real implementation, you might want to open email client
+                window.location.href = `mailto:${email}?subject=Contact%20from%20RCCG%20True%20Light%20Website&body=Dear%20${encodeURIComponent(name)}%2C%0A%0A`;
+            });
+        });
+
+        // Add hover effect to table rows
+        document.querySelectorAll('.activities-table tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#f1f3ff';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '';
+            });
+        });
+    </script>
+
+</body>
+</html>
