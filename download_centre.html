@@ -551,7 +551,7 @@
     <!-- Header -->
     <div class="header">
         <div class="logo-container">
-            <img src="images/logo.png" alt="RCCG True Light Logo">
+            <img src="./images/logo.png" alt="RCCG True Light Logo">
             <div>
                 <div class="church-name">True Light Zonal Headquarters</div>
                 <div class="church-subtitle">RCCG True Light Assembly</div>
@@ -590,33 +590,23 @@
         <h2><i class="fas fa-user-shield"></i> Admin Instructions</h2>
         
         <div class="admin-instructions">
-            <h3>How to Add Files Using Google Drive:</h3>
+            <h3>How to Add Local Files:</h3>
             
             <ol>
-                <li><strong>Upload to Google Drive:</strong>
+                <li><strong>Organize Your Files:</strong>
                     <ul>
-                        <li>Go to <a href="https://drive.google.com" target="_blank">drive.google.com</a></li>
-                        <li>Upload your files (videos, images, audio)</li>
-                        <li>Organize them in folders if needed</li>
+                        <li>Create folders in your project directory: "videos", "images", "audio"</li>
+                        <li>Place your media files in these folders</li>
+                        <li>Use descriptive filenames (e.g., "sunday_sermon_oct15.mp4")</li>
                     </ul>
                 </li>
                 
-                <li><strong>Get Shareable Links:</strong>
+                <li><strong>Update File Paths:</strong>
                     <ul>
-                        <li>Right-click the file in Google Drive</li>
-                        <li>Click "Share" → "Anyone with the link"</li>
-                        <li>Copy the link</li>
+                        <li>For videos: Use relative paths like "videos/filename.mp4"</li>
+                        <li>For images: Use relative paths like "images/filename.jpg"</li>
+                        <li>For audio: Use relative paths like "audio/filename.mp3"</li>
                     </ul>
-                </li>
-                
-                <li><strong>Convert to Download Links:</strong>
-                    <div class="code-block">
-                        Original Google Drive link:<br>
-                        https://drive.google.com/file/d/1ABC123xyz/view?usp=sharing<br><br>
-                        
-                        Convert to:<br>
-                        https://drive.google.com/uc?export=download&id=1ABC123xyz
-                    </div>
                 </li>
                 
                 <li><strong>Edit This HTML File:</strong>
@@ -624,7 +614,7 @@
                         <li>Open this file in a text editor (VS Code, Notepad++, Sublime, etc.)</li>
                         <li>Find the section you want to add to (Videos, Images, or Audio)</li>
                         <li>Copy one of the existing file blocks and edit it</li>
-                        <li>Replace the link and file information</li>
+                        <li>Replace the file paths and information</li>
                     </ul>
                 </li>
             </ol>
@@ -633,8 +623,8 @@
             <div class="code-block">
                 &lt;!-- For Videos --&gt;<br>
                 &lt;div class="video-item"&gt;<br>
-                &nbsp;&nbsp;&lt;video controls poster="images/video-thumb.jpg"&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;source src="<strong>YOUR_GOOGLE_DRIVE_LINK_HERE</strong>" type="video/mp4"&gt;<br>
+                &nbsp;&nbsp;&lt;video controls poster="<strong>images/video-thumb.jpg</strong>"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;source src="<strong>videos/your-file.mp4</strong>" type="video/mp4"&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;Your browser does not support the video tag.<br>
                 &nbsp;&nbsp;&lt;/video&gt;<br>
                 &nbsp;&nbsp;&lt;div class="video-info"&gt;<br>
@@ -645,7 +635,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;•&lt;/span&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;i class="fas fa-hdd"&gt;&lt;/i&gt; File Size&lt;/span&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="<strong>YOUR_GOOGLE_DRIVE_LINK_HERE</strong>" download class="download-btn"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="<strong>videos/your-file.mp4</strong>" download class="download-btn"&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;i class="fas fa-download"&gt;&lt;/i&gt; Download Video<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br>
                 &nbsp;&nbsp;&lt;/div&gt;<br>
@@ -680,8 +670,8 @@
             <div class="video-container">
                 <!-- Example Video 1 - EDIT THIS -->
                 <div class="video-item">
-                    <video controls poster="images/video-thumb.jpg">
-                        <source src="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_1" type="video/mp4">
+                    <video controls poster="./images/video-thumb.jpg">
+                        <source src="./videos/sunday_sermon_oct15.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-info">
@@ -692,7 +682,7 @@
                             <span>•</span>
                             <span><i class="fas fa-hdd"></i> 25 MB</span>
                         </div>
-                        <a href="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_1" download="Sunday_Sermon.mp4" class="download-btn">
+                        <a href="./videos/sunday_sermon_oct15.mp4" download="Sunday_Sermon.mp4" class="download-btn">
                             <i class="fas fa-download"></i>
                             Download Video
                         </a>
@@ -701,8 +691,8 @@
                 
                 <!-- Example Video 2 - EDIT THIS -->
                 <div class="video-item">
-                    <video controls poster="images/video-thumb2.jpg">
-                        <source src="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_2" type="video/mp4">
+                    <video controls poster="./images/video-thumb2.jpg">
+                        <source src="./videos/bible_study_oct8.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-info">
@@ -713,7 +703,7 @@
                             <span>•</span>
                             <span><i class="fas fa-hdd"></i> 18 MB</span>
                         </div>
-                        <a href="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID_2" download="Bible_Study.mp4" class="download-btn">
+                        <a href="videos/bible_study_oct8.mp4" download="Bible_Study.mp4" class="download-btn">
                             <i class="fas fa-download"></i>
                             Download Video
                         </a>
@@ -721,7 +711,7 @@
                 </div>
                 
                 <!-- ADD MORE VIDEOS HERE -->
-                <!-- Copy the above video-item block and edit the links -->
+                <!-- Copy the above video-item block and edit the file paths -->
             </div>
         </div>
 
@@ -735,16 +725,16 @@
             <div class="media-grid">
                 <!-- Example Image 1 - EDIT THIS -->
                 <div class="media-item">
-                    <img src="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_1" alt="Daddy and Mummy GO" class="media-thumbnail">
+                    <img src="./images/dandm.png" alt="Daddy and Mummy GO" class="media-thumbnail">
                     <div class="media-content">
-                        <h3 class="media-title">Daddy and Mummy GO</h3>
-                        <p class="media-description">Pastor E.A. Adeboye and wife at a church program</p>
+                        <h3 class="media-title">Daddy and Mummy Ameh</h3>
+                        <p class="media-description">Pastor Ameh Jeremiah and his Wife at Church program</p>
                         <div class="file-info">
                             <span><i class="fas fa-clock"></i> October 10, 2024</span>
                             <span>•</span>
                             <span><i class="fas fa-hdd"></i> 2 MB</span>
                         </div>
-                        <a href="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_1" download="Pastor_Adeboye.jpg" class="download-btn">
+                        <a href="./images/dandm.png" download="Pastor_Adeboye.jpg" class="download-btn">
                             <i class="fas fa-download"></i>
                             Download Image
                         </a>
@@ -753,16 +743,16 @@
                 
                 <!-- Example Image 2 - EDIT THIS -->
                 <div class="media-item">
-                    <img src="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_2" alt="General Overseer" class="media-thumbnail">
+                    <img src="./images/daddygold.jpeg" alt="General Overseer" class="media-thumbnail">
                     <div class="media-content">
-                        <h3 class="media-title">General Overseer</h3>
-                        <p class="media-description">Official portrait of Pastor E.A. Adeboye</p>
+                        <h3 class="media-title">Pastor in Charge Zone</h3>
+                        <p class="media-description">Official portrait of PastorAmeh Jeremiah</p>
                         <div class="file-info">
                             <span><i class="fas fa-clock"></i> October 5, 2024</span>
                             <span>•</span>
                             <span><i class="fas fa-hdd"></i> 1.5 MB</span>
                         </div>
-                        <a href="https://drive.google.com/uc?export=download&id=YOUR_IMAGE_ID_2" download="GO_Portrait.jpg" class="download-btn">
+                        <a href="./images/dandm.png" download="GO_Portrait.jpg" class="download-btn">
                             <i class="fas fa-download"></i>
                             Download Image
                         </a>
@@ -770,7 +760,7 @@
                 </div>
                 
                 <!-- ADD MORE IMAGES HERE -->
-                <!-- Copy the above media-item block and edit the links -->
+                <!-- Copy the above media-item block and edit the file paths -->
             </div>
         </div>
 
@@ -788,7 +778,7 @@
                         <h3 class="media-title">Powerful Ministration</h3>
                         <p class="media-description">Anointed worship session from the choir - "Great are You Lord"</p>
                         <audio controls style="width: 100%; margin: 15px 0;">
-                            <source src="https://drive.google.com/uc?export=download&id=YOUR_AUDIO_ID_1" type="audio/mpeg">
+                            <source src="./audios/Emekasongsz_-_Sokus_Makosa_Turned_Praise_Party_CeeNaija.com_.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                         <div class="file-info">
@@ -796,7 +786,7 @@
                             <span>•</span>
                             <span><i class="fas fa-hdd"></i> 8 MB</span>
                         </div>
-                        <a href="https://drive.google.com/uc?export=download&id=YOUR_AUDIO_ID_1" download="Worship_Session.mp3" class="download-btn">
+                        <a href="./audios/Emekasongsz_-_Sokus_Makosa_Turned_Praise_Party_CeeNaija.com_.mp3" download="Worship_Session.mp3" class="download-btn">
                             <i class="fas fa-download"></i>
                             Download Audio
                         </a>
@@ -804,7 +794,7 @@
                 </div>
                 
                 <!-- ADD MORE AUDIO HERE -->
-                <!-- Copy the above media-item block and edit the links -->
+                <!-- Copy the above media-item block and edit the file paths -->
             </div>
         </div>
     </div>
@@ -827,7 +817,7 @@
             if (isAdminPanelVisible) {
                 adminPanel.classList.remove('hidden');
                 window.scrollTo({ top: adminPanel.offsetTop, behavior: 'smooth' });
-                showMessage('Follow the instructions to add/edit files. You need to edit the HTML file manually.', 'info', 'adminMessage');
+                showMessage('Follow the instructions to add/edit files. Edit the HTML file to update content.', 'info', 'adminMessage');
             } else {
                 adminPanel.classList.add('hidden');
             }
@@ -893,31 +883,42 @@
             }
         });
 
-        // Helper function to generate Google Drive download link
-        function generateDriveLink(shareLink) {
-            // Extract file ID from Google Drive share link
-            const match = shareLink.match(/\/d\/([^\/]+)/);
-            if (match && match[1]) {
-                const fileId = match[1];
-                return `https://drive.google.com/uc?export=download&id=${fileId}`;
-            }
-            return shareLink; // Return original if no match
-        }
-
-        // Optional: Simple link converter (for advanced users)
-        function convertDriveLink() {
-            const shareLink = prompt('Paste your Google Drive share link:');
-            if (shareLink) {
-                const downloadLink = generateDriveLink(shareLink);
-                prompt('Your download link (copy this):', downloadLink);
-            }
-        }
-
         // Handle video loading errors
         document.querySelectorAll('video').forEach(video => {
             video.addEventListener('error', function() {
                 console.log('Video failed to load:', this.src);
-                // You could add error handling here
+                // Show error message to user
+                const parent = this.closest('.video-item');
+                const infoDiv = parent.querySelector('.video-info');
+                if (infoDiv) {
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'error-message';
+                    errorMsg.innerHTML = 'Video file not found. Please check the file path.';
+                    infoDiv.insertBefore(errorMsg, infoDiv.firstChild);
+                    
+                    setTimeout(() => {
+                        errorMsg.remove();
+                    }, 5000);
+                }
+            });
+        });
+
+        // Handle audio loading errors
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.addEventListener('error', function() {
+                console.log('Audio failed to load:', this.src);
+                // Show error message to user
+                const parent = this.closest('.media-item');
+                if (parent) {
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'error-message';
+                    errorMsg.innerHTML = 'Audio file not found. Please check the file path.';
+                    parent.querySelector('.media-content').insertBefore(errorMsg, parent.querySelector('.media-content').firstChild);
+                    
+                    setTimeout(() => {
+                        errorMsg.remove();
+                    }, 5000);
+                }
             });
         });
     </script>
